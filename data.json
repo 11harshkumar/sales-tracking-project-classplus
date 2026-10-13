@@ -1,0 +1,42 @@
+{
+  "shop": {"name": "Dukaan Hisab", "upiId": "yourshop@upi"},
+
+  "items": [
+    {"id": 1, "name": "Mustard Oil", "category": "Edible Oil", "unit": "bottle", "price": 150, "image": "images/mustard-oil.jpg", "aliases": ["mustard oil", "sarson ka tel", "sarson tel", "सरसों का तेल", "सरसों तेल", "सरसो का तेल"]},
+    {"id": 2, "name": "Toned Milk", "category": "Dairy", "unit": "packet", "price": 30, "image": "images/toned-milk.jpg", "aliases": ["toned milk", "tond milk", "टोंड मिल्क", "टोन्ड मिल्क", "doodh", "दूध", "milk"]},
+    {"id": 3, "name": "Dairy Milk Chocolate", "category": "Confectionery", "unit": "piece", "price": 40, "image": "images/dairy-milk-chocolate.jpg", "aliases": ["dairy milk chocolate", "dairy milk", "डेयरी मिल्क", "चॉकलेट", "chocolate"]},
+    {"id": 4, "name": "Sunflower Oil", "category": "Edible Oil", "unit": "pouch", "price": 135, "image": "images/sunflower-oil.jpg", "aliases": ["sunflower oil", "refined oil", "सनफ्लावर ऑयल", "रिफाइंड तेल"]},
+    {"id": 5, "name": "Amul Butter", "category": "Dairy", "unit": "pack", "price": 60, "image": "images/amul-butter.jpg", "aliases": ["amul butter", "butter", "मक्खन", "बटर"]},
+    {"id": 6, "name": "Aloo Bhujia", "category": "Snacks", "unit": "packet", "price": 50, "image": "images/aloo-bhujia.jpg", "aliases": ["aloo bhujia", "bhujia", "आलू भुजिया", "भुजिया"]},
+    {"id": 7, "name": "Parle-G Biscuit", "category": "Snacks", "unit": "packet", "price": 10, "image": "images/parle-g-biscuit.jpg", "aliases": ["parle g", "parle-g", "biscuit", "पारले जी", "बिस्कुट"]},
+    {"id": 8, "name": "Maggi Noodles", "category": "Snacks", "unit": "packet", "price": 14, "image": "images/maggi-noodles.jpg", "aliases": ["maggi", "noodles", "मैगी", "नूडल्स"]},
+    {"id": 9, "name": "Cold Drink", "category": "Beverages", "unit": "bottle", "price": 40, "image": "images/cold-drink.jpg", "aliases": ["cold drink", "thums up", "कोल्ड ड्रिंक", "ठंडा"]},
+    {"id": 10, "name": "Tata Tea", "category": "Beverages", "unit": "packet", "price": 120, "image": "images/tata-tea.jpg", "aliases": ["tata tea", "chai patti", "tea", "चाय पत्ती", "चायपत्ती", "टाटा टी"]},
+    {"id": 11, "name": "Surf Excel", "category": "Household Essentials", "unit": "packet", "price": 130, "image": "images/surf-excel.jpg", "aliases": ["surf excel", "surf", "detergent", "सर्फ एक्सेल", "सर्फ"]},
+    {"id": 12, "name": "Lifebuoy Soap", "category": "Household Essentials", "unit": "bar", "price": 35, "image": "images/lifebuoy-soap.jpg", "aliases": ["lifebuoy", "soap", "sabun", "साबुन", "लाइफबॉय"]},
+    {"id": 13, "name": "Colgate Toothpaste", "category": "Household Essentials", "unit": "tube", "price": 55, "image": "images/colgate-toothpaste.jpg", "aliases": ["colgate", "toothpaste", "paste", "कोलगेट", "टूथपेस्ट"]},
+    {"id": 14, "name": "Water Bottle", "category": "Beverages", "unit": "bottle", "price": 20, "image": "images/water-bottle.jpg", "aliases": ["water bottle", "water", "paani", "पानी"]}
+  ],
+
+  "voiceDemo": [{"itemId": 2, "qty": 2}, {"itemId": 1, "qty": 1}],
+
+  "transactions": [
+    {"id": 1, "dayOffset": 0, "time": "09:55", "type": "sale", "paymentMethod": "Cash", "status": "paid", "lines": [{"itemId": 1, "price": 150, "qty": 1}, {"itemId": 2, "price": 30, "qty": 2}, {"itemId": 7, "price": 10, "qty": 4}, {"itemId": 8, "price": 14, "qty": 2}]},
+    {"id": 2, "dayOffset": 0, "time": "10:15", "type": "udhar", "status": "pending", "customer": {"name": "Ramesh Kumar", "phone": "9812345670"}, "lines": [{"itemId": 4, "price": 135, "qty": 2}, {"itemId": 10, "price": 120, "qty": 1}]},
+    {"id": 3, "dayOffset": 0, "time": "11:40", "type": "sale", "paymentMethod": "UPI", "status": "paid", "lines": [{"itemId": 9, "price": 40, "qty": 2}, {"itemId": 6, "price": 50, "qty": 2}, {"itemId": 3, "price": 40, "qty": 3}]},
+    {"id": 4, "dayOffset": 1, "time": "18:20", "type": "sale", "paymentMethod": "Cash", "status": "paid", "lines": [{"itemId": 11, "price": 130, "qty": 1}, {"itemId": 12, "price": 35, "qty": 3}, {"itemId": 13, "price": 55, "qty": 1}]},
+    {"id": 5, "dayOffset": 1, "time": "12:05", "type": "udhar", "status": "pending", "customer": {"name": "Sunita Devi", "phone": "9876501234"}, "lines": [{"itemId": 2, "price": 30, "qty": 4}, {"itemId": 5, "price": 60, "qty": 1}, {"itemId": 1, "price": 150, "qty": 1}]},
+    {"id": 6, "dayOffset": 2, "time": "09:30", "type": "sale", "paymentMethod": "Cash", "status": "paid", "lines": [{"itemId": 2, "price": 30, "qty": 6}, {"itemId": 3, "price": 40, "qty": 2}]},
+    {"id": 7, "dayOffset": 3, "time": "17:45", "type": "sale", "paymentMethod": "UPI", "status": "paid", "lines": [{"itemId": 10, "price": 120, "qty": 2}, {"itemId": 4, "price": 135, "qty": 1}, {"itemId": 8, "price": 14, "qty": 5}]},
+    {"id": 8, "dayOffset": 4, "time": "10:10", "type": "udhar", "status": "received", "receivedDayOffset": 1, "receivedTime": "19:00", "customer": {"name": "Mohan Lal", "phone": "9988776655"}, "lines": [{"itemId": 1, "price": 150, "qty": 2}, {"itemId": 11, "price": 130, "qty": 1}], "receivedMethod": "Cash"},
+    {"id": 9, "dayOffset": 6, "time": "14:20", "type": "sale", "paymentMethod": "Cash", "status": "paid", "lines": [{"itemId": 14, "price": 20, "qty": 6}, {"itemId": 7, "price": 10, "qty": 10}, {"itemId": 9, "price": 40, "qty": 2}]},
+    {"id": 10, "dayOffset": 8, "time": "11:00", "type": "udhar", "status": "pending", "customer": {"name": "Geeta Sharma", "phone": "9123456780"}, "lines": [{"itemId": 4, "price": 135, "qty": 3}, {"itemId": 5, "price": 60, "qty": 2}, {"itemId": 2, "price": 30, "qty": 2}]},
+    {"id": 11, "dayOffset": 10, "time": "16:30", "type": "sale", "paymentMethod": "UPI", "status": "paid", "lines": [{"itemId": 1, "price": 145, "qty": 2}, {"itemId": 6, "price": 50, "qty": 3}, {"itemId": 3, "price": 40, "qty": 5}]},
+    {"id": 12, "dayOffset": 13, "time": "09:15", "type": "sale", "paymentMethod": "Cash", "status": "paid", "lines": [{"itemId": 2, "price": 30, "qty": 8}, {"itemId": 7, "price": 10, "qty": 6}, {"itemId": 12, "price": 35, "qty": 2}]},
+    {"id": 13, "dayOffset": 16, "time": "19:10", "type": "udhar", "status": "received", "receivedDayOffset": 12, "receivedTime": "18:00", "customer": {"name": "Ramesh Kumar", "phone": "9812345670"}, "lines": [{"itemId": 10, "price": 115, "qty": 2}, {"itemId": 11, "price": 125, "qty": 1}], "receivedMethod": "UPI"},
+    {"id": 14, "dayOffset": 20, "time": "12:40", "type": "sale", "paymentMethod": "Cash", "status": "paid", "lines": [{"itemId": 13, "price": 55, "qty": 2}, {"itemId": 9, "price": 40, "qty": 4}, {"itemId": 14, "price": 20, "qty": 4}]},
+    {"id": 15, "dayOffset": 25, "time": "10:50", "type": "sale", "paymentMethod": "UPI", "status": "paid", "lines": [{"itemId": 4, "price": 130, "qty": 2}, {"itemId": 1, "price": 145, "qty": 1}, {"itemId": 2, "price": 30, "qty": 5}]},
+    {"id": 16, "dayOffset": 33, "time": "15:05", "type": "sale", "paymentMethod": "Cash", "status": "paid", "lines": [{"itemId": 8, "price": 14, "qty": 10}, {"itemId": 7, "price": 10, "qty": 12}, {"itemId": 3, "price": 40, "qty": 4}]},
+    {"id": 17, "dayOffset": 38, "time": "11:25", "type": "udhar", "status": "pending", "customer": {"name": "Sunita Devi", "phone": "9876501234"}, "lines": [{"itemId": 11, "price": 125, "qty": 2}, {"itemId": 12, "price": 35, "qty": 4}]}
+  ]
+}

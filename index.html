@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dukaan Hisab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ HOME SCREEN ============ -->
+  <section id="screen-home" class="screen">
+    <header class="top-bar home-bar">
+      <h1>Dukaan Hisab</h1>
+      <button id="btn-language" class="lang-btn" type="button">🌐 English</button>
+    </header>
+
+    <div class="content">
+      <div class="home-actions">
+        <div class="new-row">
+          <button id="btn-new" class="big primary" type="button">+ New Record</button>
+          <button id="btn-home-mic" class="mic-square" type="button" aria-label="Speak a new record">🎤</button>
+        </div>
+        <button id="btn-dashboard" class="big secondary" type="button">Dashboard</button>
+      </div>
+
+      <!-- Shown while data.json loads, or if it fails -->
+      <div id="home-status" class="status-box" hidden></div>
+
+      <!-- Transaction cards are drawn here by app.js -->
+      <div id="history"></div>
+    </div>
+  </section>
+
+  <!-- ============ NEW RECORD SCREEN ============ -->
+  <section id="screen-new" class="screen" hidden>
+    <header class="top-bar with-back">
+      <button id="btn-back-new" class="back-btn" type="button" aria-label="Back to Home">←</button>
+      <div>
+        <h1>New Record</h1>
+        <p id="new-datetime" class="datetime"></p>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="search-row">
+        <input id="search" type="search" placeholder="Search items..." autocomplete="off" aria-label="Search items">
+      </div>
+
+      <fieldset class="pay-method">
+        <legend>Payment</legend>
+        <label><input type="radio" name="payment" value="Cash" checked> <span>Cash</span></label>
+        <label><input type="radio" name="payment" value="UPI"> <span>UPI</span></label>
+      </fieldset>
+
+      <div id="product-list" class="product-list"></div>
+      <div id="no-match" class="status-box" hidden>No items match your search. Try a different name.</div>
+    </div>
+
+    <div class="bottom-bar">
+      <div class="summary">
+        <span><strong id="sum-units">0</strong> units</span>
+        <span><strong id="sum-products">0</strong> products</span>
+        <span class="sum-total">Total <strong id="sum-total">₹0</strong></span>
+      </div>
+      <div class="save-row">
+        <button id="btn-save-sale" class="big save-sale" type="button">Save Sale</button>
+        <button id="btn-save-udhar" class="big save-udhar" type="button">Save as Udhar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DASHBOARD SCREEN ============ -->
+  <section id="screen-dashboard" class="screen" hidden>
+    <header class="top-bar with-back">
+      <button id="btn-back-dash" class="back-btn" type="button" aria-label="Back to Home">←</button>
+      <div>
+        <h1>Dashboard</h1>
+        <p class="datetime">Money collected (cash, UPI, Udhar received)</p>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="earn-grid">
+        <div class="earn-card"><span class="label">Today</span><strong id="earn-today">₹0</strong></div>
+        <div class="earn-card"><span class="label">This Week</span><strong id="earn-week">₹0</strong></div>
+        <div class="earn-card"><span class="label">This Month</span><strong id="earn-month">₹0</strong></div>
+      </div>
+
+      <div class="panel">
+        <h2>Last 7 days</h2>
+        <div id="week-bars" class="day-bars"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Choose dates</h2>
+        <div class="filter-row">
+          <label>Start date <input id="filter-from" type="date"></label>
+          <label>End date <input id="filter-to" type="date"></label>
+        </div>
+        <p id="filter-error" class="error-text" role="alert" hidden></p>
+        <div class="filter-buttons">
+          <button id="btn-apply" class="big primary small" type="button">Apply Filter</button>
+          <button id="btn-all" class="big secondary small" type="button">All Records</button>
+        </div>
+        <p id="range-label" class="range-label"></p>
+      </div>
+
+      <div class="panel">
+        <h2>Cash and UPI earnings</h2>
+        <div class="method-grid">
+          <div class="method-card cash"><span class="label">Cash Earnings</span><strong id="earn-cash">₹0</strong></div>
+          <div class="method-card upi"><span class="label">UPI Earnings</span><strong id="earn-upi">₹0</strong></div>
+        </div>
+        <div class="mix-bar" aria-hidden="true">
+          <div id="mix-cash" class="mix-cash"></div>
+          <div id="mix-upi" class="mix-upi"></div>
+        </div>
+        <p class="range-label">For the dates chosen above</p>
+      </div>
+
+      <div class="panel">
+        <h2>Sales in these dates</h2>
+        <div class="stat-grid">
+          <div class="stat"><span class="label">Total Sales (recorded)</span><strong id="stat-total">₹0</strong></div>
+          <div class="stat"><span class="label">Money Collected</span><strong id="stat-collected" class="green">₹0</strong></div>
+          <div class="stat"><span class="label">Outstanding Udhar</span><strong id="stat-outstanding" class="red">₹0</strong></div>
+        </div>
+        <div class="mix-bar" aria-hidden="true">
+          <div id="mix-paid" class="mix-paid"></div>
+          <div id="mix-udhar" class="mix-udhar"></div>
+        </div>
+        <p class="mix-legend">
+          <span><i class="dot green-bg"></i> Paid sales <b id="mix-paid-amt">₹0</b></span>
+          <span><i class="dot red-bg"></i> Udhar <b id="mix-udhar-amt">₹0</b></span>
+        </p>
+      </div>
+
+      <div class="best-grid">
+        <div class="best-card"><span class="label">Most Sold Item</span><strong id="best-item">-</strong><span id="best-item-qty" class="sub"></span></div>
+        <div class="best-card"><span class="label">Most Sold Category</span><strong id="best-cat">-</strong><span id="best-cat-qty" class="sub"></span></div>
+      </div>
+
+      <div class="panel">
+        <h2>Top items</h2>
+        <div id="top-items" class="bars"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Top categories</h2>
+        <div id="top-cats" class="bars"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIALOGS ============ -->
+
+  <!-- Language choice (shown every time the app opens) -->
+  <dialog id="dlg-lang">
+    <div class="dlg-body">
+      <h2>Choose your language</h2>
+      <p class="voice-hint">This is a prototype, so all screens are shown in English for now.</p>
+      <button class="big secondary lang-option" type="button" data-lang="Hindi">Hindi</button>
+      <button class="big secondary lang-option" type="button" data-lang="English">English</button>
+      <button class="big secondary lang-option" type="button" data-lang="Bengali">Bengali</button>
+      <button class="big secondary lang-option" type="button" data-lang="Punjabi">Punjabi</button>
+    </div>
+  </dialog>
+
+  <!-- UPI QR -->
+  <dialog id="dlg-qr">
+    <div class="dlg-body qr-body">
+      <div class="dlg-head">
+        <h2>Scan to pay</h2>
+        <button id="qr-close-x" class="close-x" type="button" aria-label="Close">✕</button>
+      </div>
+      <p class="qr-amount">Total <strong id="qr-total">₹0</strong></p>
+      <div id="qr-image" class="qr-image"></div>
+      <p id="qr-upi" class="qr-upi"></p>
+      <button id="qr-done" class="big save-sale" type="button">Payment Received - Save</button>
+      <button id="qr-close" class="big secondary" type="button">Close</button>
+    </div>
+  </dialog>
+
+  <!-- Transaction details -->
+  <dialog id="dlg-details">
+    <div class="dlg-body">
+      <div class="dlg-head">
+        <h2 id="det-title">Details</h2>
+        <button id="det-close-x" class="close-x" type="button" aria-label="Close">✕</button>
+      </div>
+      <p id="det-meta" class="det-meta"></p>
+      <table class="det-table">
+        <thead><tr><th>Item</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead>
+        <tbody id="det-rows"></tbody>
+        <tfoot><tr><td colspan="3">Total</td><td id="det-total"></td></tr></tfoot>
+      </table>
+      <div id="det-customer" class="det-customer" hidden></div>
+      <fieldset id="det-method" class="pay-method" hidden>
+        <legend>Received by</legend>
+        <label><input type="radio" name="recv-method" value="Cash" checked> <span>Cash</span></label>
+        <label><input type="radio" name="recv-method" value="UPI"> <span>UPI</span></label>
+      </fieldset>
+      <button id="det-received" class="big save-sale" type="button" hidden>Mark as Received</button>
+      <button id="det-close" class="big secondary" type="button">Close</button>
+    </div>
+  </dialog>
+
+  <!-- Udhar form -->
+  <dialog id="dlg-udhar">
+    <form id="udhar-form" class="dlg-body" novalidate>
+      <div class="dlg-head">
+        <h2>Save as Udhar</h2>
+        <button id="udhar-close-x" class="close-x" type="button" aria-label="Close">✕</button>
+      </div>
+      <p class="udhar-total">Udhar amount: <strong id="udhar-total">₹0</strong></p>
+
+      <label class="field">Customer name
+        <input id="udhar-name" type="text" autocomplete="off" placeholder="e.g. Ramesh Kumar">
+      </label>
+      <label class="field">Phone number
+        <input id="udhar-phone" type="tel" inputmode="numeric" autocomplete="off" placeholder="10-digit mobile number">
+      </label>
+      <p id="udhar-error" class="error-text" role="alert" hidden></p>
+
+      <button class="big save-udhar" type="submit">Save Udhar</button>
+      <button id="udhar-cancel" class="big secondary" type="button">Cancel</button>
+    </form>
+  </dialog>
+
+  <!-- Voice -->
+  <dialog id="dlg-voice">
+    <div class="dlg-body">
+      <div class="dlg-head">
+        <h2>Speak your items</h2>
+        <button id="voice-close-x" class="close-x" type="button" aria-label="Close">✕</button>
+      </div>
+      <p class="voice-hint">Tap the mic and say, for example: “2 toned milk and 1 mustard oil”. Tap Next when done.</p>
+
+      <button id="voice-toggle" class="voice-mic" type="button" aria-label="Start or stop listening">🎤</button>
+      <p id="voice-status" class="voice-status" role="status">Tap the mic to start</p>
+      <div id="voice-text" class="voice-text">Your words will show here.</div>
+
+      <button id="voice-next" class="big primary" type="button">Next</button>
+      <button id="voice-cancel" class="big secondary" type="button">Cancel</button>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="qrcode.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
